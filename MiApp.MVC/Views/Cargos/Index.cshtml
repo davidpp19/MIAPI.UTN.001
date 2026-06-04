@@ -1,0 +1,28 @@
+﻿@using MiAPI.UTN.Modelos;
+@model IEnumerable<Cargo>
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Cargo</td>
+            <td>Descripción</td>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var cargo in Model)
+    {
+        <tr>
+            <td>@cargo.Id</td>
+            <td>@cargo.Name</td>
+            <td>@cargo.Description</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -6,4 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Api.Consumer\Api.Consummer.csproj" />
+    <ProjectReference Include="..\MiAPI.UTN.Modelos\MiAPI.UTN.Modelos.csproj" />
+  </ItemGroup>
+
 </Project>
