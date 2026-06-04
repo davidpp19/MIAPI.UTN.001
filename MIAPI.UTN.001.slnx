@@ -3,4 +3,5 @@
   <Project Path="MiApi.Test/MiApi.Test.csproj" Id="70ddedf5-d8f8-45f6-a89b-da95eed12328" />
   <Project Path="MIAPI.UTN.001/MIAPI.UTN.001.csproj" />
   <Project Path="MiAPI.UTN.Modelos/MiAPI.UTN.Modelos.csproj" Id="20586e0a-8229-4446-bb2a-8337f336e842" />
+  <Project Path="MiApp.MVC/MiApp.MVC.csproj" Id="ed3fbf53-147e-40c7-ad90-59815a4bf6aa" />
 </Solution>
