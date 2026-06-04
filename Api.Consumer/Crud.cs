@@ -14,7 +14,7 @@ namespace Api.Consummer
     {
         public static string Endpoint { get; set; } //Propiedad estática que representa el punto de acceso (endpoint) para las operaciones CRUD. 
                                                     //Al ser estática, esta propiedad es compartida por todas las instancias de la clase Crud<T>, lo que significa que se puede configurar una única URL de endpoint para todas las operaciones CRUD realizadas a través de esta clase.
-        public static T Create(T data)
+        public static async Task<T> Create(T data)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Api.Consummer
 
                     var response = httpClient.Send(request);
 
-                    if (!response.IsSuccessStatusCode)
+                    if (response.IsSuccessStatusCode)
                     {
                         var json = response.Content.ReadAsStringAsync().Result;
                         var result = System.Text.Json.JsonSerializer.Deserialize<T>(json);
