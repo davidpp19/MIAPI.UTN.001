@@ -17,22 +17,25 @@ namespace MiApp.MVC.Controllers
         // GET: CargosController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var datos = Crud<Cargo>.ReadById(id.ToString());
+            return View(datos);
         }
 
         // GET: CargosController/Create
         public ActionResult Create()
         {
+            //Devuelve vista Sin datos, ya que el formulario se llenará con los datos que el usuario ingrese
             return View();
         }
 
         // POST: CargosController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Cargo data)
         {
             try
             {
+                var nuevoCargo = Crud<Cargo>.Create(data);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -44,16 +47,18 @@ namespace MiApp.MVC.Controllers
         // GET: CargosController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var datos = Crud<Cargo>.ReadById(id.ToString());
+            return View(datos);
         }
 
         // POST: CargosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Cargo datos)
         {
             try
             {
+                Crud<Cargo>.Update(id.ToString(), datos);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -63,23 +68,28 @@ namespace MiApp.MVC.Controllers
         }
 
         // GET: CargosController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            return View();
+            var datos = Crud<Cargo>.ReadById(id);
+            return View(datos);
         }
 
         // POST: CargosController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, Cargo datos)
         {
             try
             {
+                Crud<Cargo>.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                {
+                    ViewData["Error"] = ex.Message + ", :(";
+                    return View(datos);
+                }
             }
         }
     }
