@@ -11,4 +11,8 @@
     <ProjectReference Include="..\MiAPI.UTN.Modelos\MiAPI.UTN.Modelos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Empleados\" />
+  </ItemGroup>
+
 </Project>
