@@ -1,0 +1,56 @@
+﻿@using MiAPI.UTN.Modelos;
+
+@model Empleado
+
+@{
+    ViewData["Title"] = "Editar Empleado";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Editar Empleado</h2>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <input asp-for="Id" type="hidden" />
+
+    <div class="mb-3">
+        <label asp-for="Salario" class="form-label"></label>
+        <input asp-for="Salario" class="form-control" />
+        <span asp-validation-for="Salario" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Comision" class="form-label"></label>
+        <input asp-for="Comision" class="form-control" />
+        <span asp-validation-for="Comision" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaIngreso" class="form-label"></label>
+        <textarea asp-for="FechaIngreso" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="PersonaId" class="form-label"></label>
+        <textarea asp-for="PersonaId" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="PersonaId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CargoId" class="form-label"></label>
+        <textarea asp-for="CargoId" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="CargoId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

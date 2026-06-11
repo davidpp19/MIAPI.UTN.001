@@ -5,36 +5,36 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MiApp.MVC.Controllers
 {
-    public class EmpleadosController : Controller
+    public class PersonasController : Controller
     {
-        // GET: EmpleadosController
+        // GET: PersonasController
         public ActionResult Index()
         {
-            var empleados = Crud<Empleado>.ReadAll();
-            return View(empleados);
+            var personas = Crud<Persona>.ReadAll();
+            return View(personas);
         }
 
-        // GET: EmpleadosController/Details/5
+        // GET: PersonasController/Details/5
         public ActionResult Details(int id)
         {
-            var datos = Crud<Empleado>.ReadById(id.ToString());
+            var datos = Crud<Persona>.ReadById(id.ToString());
             return View(datos);
         }
 
-        // GET: EmpleadosController/Create
+        // GET: PersonasController/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: EmpleadosController/Create
+        // POST: PersonasController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Empleado empleado)
+        public ActionResult Create(Persona data)
         {
             try
             {
-                var nuevoEmpleado = Crud<Empleado>.Create(empleado);
+                var nuevaPersona = Crud<Persona>.Create(data);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -43,21 +43,21 @@ namespace MiApp.MVC.Controllers
             }
         }
 
-        // GET: EmpleadosController/Edit/5
+        // GET: PersonasController/Edit/5
         public ActionResult Edit(int id)
         {
-            var datos = Crud<Empleado>.ReadById(id.ToString());
+            var datos = Crud<Persona>.ReadById(id.ToString());
             return View(datos);
         }
 
-        // POST: EmpleadosController/Edit/5
+        // POST: PersonasController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Empleado empleado)
+        public ActionResult Edit(int id, Persona persona)
         {
             try
             {
-                Crud<Empleado>.Update(id.ToString(), empleado);
+                Crud<Persona>.Update(id.ToString(), persona);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -66,27 +66,27 @@ namespace MiApp.MVC.Controllers
             }
         }
 
-        // GET: EmpleadosController/Delete/5
+        // GET: PersonasController/Delete/5
         public ActionResult Delete(string id)
         {
-            var datos = Crud<Empleado>.ReadById(id);
+            var datos = Crud<Persona>.ReadById(id);
             return View(datos);
         }
 
-        // POST: EmpleadosController/Delete/5
+        // POST: PersonasController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, Empleado datos)
+        public ActionResult Delete(string id, Persona persona)
         {
             try
             {
-                Crud<Empleado>.Delete(id.ToString());
+                Crud<Persona>.Delete(id);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex) 
             {
-                ViewData["Error"] = ex.Message;
-                return View(datos);
+                ViewData["Message"] = ex.Message;
+                return View(persona);
             }
         }
     }
