@@ -2,6 +2,7 @@
 using MiAPI.UTN.Modelos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MiApp.MVC.Controllers
 {
@@ -21,9 +22,32 @@ namespace MiApp.MVC.Controllers
             return View(datos);
         }
 
+        private void LeerListaDatos()
+        {
+            var listaPersonas = Crud<Persona>.ReadAll();
+            var listaCargos = Crud<Cargo>.ReadAll();
+
+            var selectListPersonas = listaPersonas.Select(p =>
+            new SelectListItem
+            {
+                Value = p.Id.ToString(),
+                Text = $"{p.Id} - {p.Apellido} - {p.Name}"
+            }).OrderBy(i => i.Text);
+
+            var selectListCargos = listaCargos.Select(c =>
+            new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = $"{c.Id} - {c.Name}"
+            }).OrderBy(i => i.Text);
+
+            ViewData["ListaPersonas"] = selectListPersonas;
+            ViewData["ListaCargos"] = selectListCargos;
+        }
         // GET: EmpleadosController/Create
         public ActionResult Create()
         {
+            LeerListaDatos();
             return View();
         }
 
@@ -37,16 +61,18 @@ namespace MiApp.MVC.Controllers
                 var nuevoEmpleado = Crud<Empleado>.Create(empleado);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewData["Error"] = ex.Message;
+                return View(empleado);
             }
         }
 
         // GET: EmpleadosController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            var datos = Crud<Empleado>.ReadById(id.ToString());
+            var datos = Crud<Empleado>.ReadById(id);
+            LeerListaDatos();
             return View(datos);
         }
 
@@ -60,9 +86,10 @@ namespace MiApp.MVC.Controllers
                 Crud<Empleado>.Update(id.ToString(), empleado);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewData["Error"] = ex.Message; 
+                return View(empleado);
             }
         }
 
@@ -70,6 +97,7 @@ namespace MiApp.MVC.Controllers
         public ActionResult Delete(string id)
         {
             var datos = Crud<Empleado>.ReadById(id);
+            LeerListaDatos();
             return View(datos);
         }
 

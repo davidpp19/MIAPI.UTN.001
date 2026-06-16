@@ -2,6 +2,7 @@
 using MiAPI.UTN.Modelos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MiApp.MVC.Controllers
 {
@@ -38,11 +39,13 @@ namespace MiApp.MVC.Controllers
                 var nuevoCargo = Crud<Cargo>.Create(data);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewData["Message"] = ex.Message;
+                return View(data);
             }
         }
+        
 
         // GET: CargosController/Edit/5
         public ActionResult Edit(int id)
@@ -61,9 +64,10 @@ namespace MiApp.MVC.Controllers
                 Crud<Cargo>.Update(id.ToString(), datos);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ViewData["Message"] = ex.Message;
+                return View(datos);
             }
         }
 
