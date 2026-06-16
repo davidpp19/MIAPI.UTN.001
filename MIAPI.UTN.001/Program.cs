@@ -9,6 +9,7 @@ namespace MiAPI.UTN._001
     {
         public static void Main(string[] args)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddDbContext<MIAPIUTN_001Context>(options =>
             //    options.UseSqlServer(builder.Configuration.GetConnectionString("SQLServer")
