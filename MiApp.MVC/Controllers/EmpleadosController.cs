@@ -61,6 +61,7 @@ namespace MiApp.MVC.Controllers
             catch (Exception ex)
             {
                 ViewData["Error"] = ex.Message;
+                LeerListaDatos();
                 return View(empleado);
             }
         }
@@ -85,7 +86,8 @@ namespace MiApp.MVC.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["Error"] = ex.Message; 
+                ViewData["Error"] = ex.Message;
+                LeerListaDatos();
                 return View(empleado);
             }
         }
