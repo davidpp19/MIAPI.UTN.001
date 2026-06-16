@@ -16,6 +16,28 @@
 
     <input asp-for="Id" type="hidden" />
 
+    <div class="form-group">
+        <label asp-for="Persona" class="control-label">Persona</label>
+        <select asp-for="PersonaId" class="form-control" asp-items="@ViewBag.selectListPersonas">
+            <option value="">-- Seleccion Persona --</option>
+        </select>
+        <span asp-validation-for="Persona" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cargo" class="control-label">Cargo</label>
+        <select asp-for="CargoId" class="form-control" asp-items="ViewBag.selectListCargos">
+            <option value="">-- Seleccion Cargo --</option>
+        </select>
+        <span asp-validation-for="Cargo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaIngreso" class="form-label"></label>
+        <input asp-for="FechaIngreso" class="form-control" />
+        <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+    </div>
+
     <div class="mb-3">
         <label asp-for="Salario" class="form-label"></label>
         <input asp-for="Salario" class="form-control" />
@@ -26,24 +48,6 @@
         <label asp-for="Comision" class="form-label"></label>
         <input asp-for="Comision" class="form-control" />
         <span asp-validation-for="Comision" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="FechaIngreso" class="form-label"></label>
-        <textarea asp-for="FechaIngreso" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="FechaIngreso" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="PersonaId" class="form-label"></label>
-        <textarea asp-for="PersonaId" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="PersonaId" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="CargoId" class="form-label"></label>
-        <textarea asp-for="CargoId" class="form-control" rows="3"></textarea>
-        <span asp-validation-for="CargoId" class="text-danger"></span>
     </div>
 
     <button type="submit" class="btn btn-primary">Guardar</button>

@@ -27,22 +27,19 @@ namespace MiApp.MVC.Controllers
             var listaPersonas = Crud<Persona>.ReadAll();
             var listaCargos = Crud<Cargo>.ReadAll();
 
-            var selectListPersonas = listaPersonas.Select(p =>
-            new SelectListItem
-            {
-                Value = p.Id.ToString(),
-                Text = $"{p.Id} - {p.Apellido} - {p.Name}"
-            }).OrderBy(i => i.Text);
+            ViewBag.selectListPersonas = listaPersonas.Select(p =>
+                new SelectListItem
+                {
+                    Value = p.Id.ToString(),
+                    Text = $"{p.Id} - {p.Apellido} {p.Name}"
+                }).OrderBy(i => i.Text).ToList();
 
-            var selectListCargos = listaCargos.Select(c =>
-            new SelectListItem
-            {
-                Value = c.Id.ToString(),
-                Text = $"{c.Id} - {c.Name}"
-            }).OrderBy(i => i.Text);
-
-            ViewData["ListaPersonas"] = selectListPersonas;
-            ViewData["ListaCargos"] = selectListCargos;
+            ViewBag.selectListCargos = listaCargos.Select(c =>
+                new SelectListItem
+                {
+                    Value = c.Id.ToString(),
+                    Text = c.Name
+                }).OrderBy(i => i.Text).ToList();
         }
         // GET: EmpleadosController/Create
         public ActionResult Create()

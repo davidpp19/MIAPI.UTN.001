@@ -3,18 +3,18 @@
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Empelados</h2>
-    <a asp-action="Create" class="btn btn-primary">Agregar</a>
+    <a asp-action="Create" class="btn btn-primary">Agregar empleado</a>
 </div>
 
 <table class="table table-bordered table-hover">
     <thead class="table-light">
         <tr>
             <th>Id</th>
+            <th>Nombre Persona</th>
+            <th>Cargo</th>
+            <th>Fecha Ingreso</th>
             <th>Salario</th>
             <th>Comisión</th>
-            <th>Fecha Ingreso</th>
-            <th>Persona</th>
-            <th>Cargo</th>
         </tr>
     </thead>
     <tbody>
@@ -22,11 +22,11 @@
         {
             <tr>
                 <td>@empleado.Id</td>
-                <td>@empleado.Salario</td>
-                <td>@empleado.Comision</td>
-                <td>@empleado.FechaIngreso</td>
-                <td>@empleado.Persona.Name @empleado.Persona.Apellido</td>
+                <td>@empleado.Persona.Apellido @empleado.Persona.Name</td>
                 <td>@empleado.Cargo.Name</td>
+                <td>@empleado.FechaIngreso.ToString("dd-MMM-yyyy")</td>
+                <td>@empleado.Salario.ToString("###,##0.00")</td>
+                <td>@empleado.Comision.ToString("###,##0.00")</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@empleado.Id" class="btn btn-sm btn-warning">Editar</a>
                     <a asp-action="Details" asp-route-id="@empleado.Id" class="btn btn-sm btn-info">Detalles</a>

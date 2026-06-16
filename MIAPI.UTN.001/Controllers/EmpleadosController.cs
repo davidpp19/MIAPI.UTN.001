@@ -28,7 +28,7 @@ namespace MiAPI.UTN._001.Controllers
             return await _context
                 .Empleados
                 .Include(e => e.Persona) // Incluye la entidad relacionada Persona
-                .Include(e => e.Cargo)   // Incluye la entidad relacionada Cargo
+                .Include(c => c.Cargo)   // Incluye la entidad relacionada Cargo
                 .ToListAsync();
         }
 
