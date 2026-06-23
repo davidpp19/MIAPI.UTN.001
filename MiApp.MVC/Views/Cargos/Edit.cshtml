@@ -39,6 +39,7 @@
             <td>Salario</td>
             <td>Comisión</td>
             <td>Fecha Ingreso</td>
+            <td>Acciones</td>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +51,10 @@
                 <td>@empleado.Salario</td>
                 <td>@empleado.Comision</td>
                 <td>@empleado.FechaIngreso</td>
+                <td>
+                    <a asp-controller="Empleados" asp-action="Edit" asp-route-id="@empleado.Id" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-controller="Empleados" asp-action="Delete" asp-route-id="@empleado.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
             </tr>
         }
     </tbody>
